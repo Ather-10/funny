@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Secure Verification</title>
+  <style>
+    body {
+      background: black;
+      color: #00ff00;
+      font-family: monospace;
+      padding: 20px;
+    }
+    #text {
+      white-space: pre-line;
+    }
+    .blink {
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body onclick="goFull()">
+
+<div id="text"></div>
+<span class="blink">█</span>
+
+<script>
+const lines = [
+  "Initializing secure connection...",
+  "Requesting device permission...",
+  "Verifying system...",
+  "Scanning...",
+  "Connection established.",
+  "",
+  "😂 PRANK ALERT 😂",
+  "Nothing happened.",
+  "You are safe 😎"
+];
+
+let i = 0;
+let j = 0;
+const text = document.getElementById("text");
+
+function type() {
+  if (i < lines.length) {
+    if (j < lines[i].length) {
+      text.innerHTML += lines[i][j];
+      j++;
+      setTimeout(type, 40);
+    } else {
+      text.innerHTML += "\n";
+      j = 0;
+      i++;
+      setTimeout(type, 500);
+    }
+  }
+}
+
+function goFull() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  }
+}
+
+type();
+</script>
+
+</body>
+</html>
+
